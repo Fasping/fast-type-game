@@ -1,24 +1,34 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+const $time = document.querySelector("time");
+const $paragraph = document.querySelector("p");
+const $input = document.querySelector("input");
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const INITIAL_TIME = 30;
 
-setupCounter(document.querySelector('#counter'))
+const TEXT =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat ";
+
+let words = [];
+let currentTime = INITIAL_TIME;
+
+initGame();
+initEvents();
+
+function initGame() {
+  words = TEXT.split(" ").slice(0, 32);
+  currentTime = INITIAL_TIME;
+
+  $time.textContent = currentTime;
+
+  $paragraph.innerHTML = words
+    .map((word, index) => {
+      const letters = word.split("");
+
+      return `<word>
+    ${letters.map((letter) => `<letter>${letter}</letter>`).join("")}
+    </word>
+    `;
+    })
+    .join("");
+}
+
+function initEvents() {}
