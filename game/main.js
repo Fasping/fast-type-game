@@ -29,6 +29,25 @@ function initGame() {
     `;
     })
     .join("");
+
+  const $firstWord = $paragraph.querySelector("word");
+  $firstWord.classList.add("active");
+  $firstWord.querySelector("letter").classList.add("active");
+
+  const intervalId = setInterval(() => {
+    currentTime--;
+    $time.textContent = currentTime;
+
+    if (currentTime === 0) {
+      clearInterval(intervalId);
+      gameOver();
+    } else {
+    }
+  }, 1000);
 }
 
 function initEvents() {}
+
+function gameOver() {
+  console.log("game over");
+}
